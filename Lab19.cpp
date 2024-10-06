@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream> 
 #include <vector> 
+#include <iomanip> 
 using namespace std; 
 
 struct Node {
@@ -33,6 +34,37 @@ class Movie {
                     head = head->next; 
 
                     delete temp; 
+                }
+            }
+
+             void review(double rating, const string &comment) {
+
+                Node *newNode = new Node; 
+
+                newNode->value = rating; 
+
+                newNode->comment = comment; 
+
+                newNode->next = head; 
+
+                head = newNode; 
+            }
+
+             void output() {
+
+                cout << "Movie: " << title << endl; 
+
+                Node *current = head; 
+
+                int reviews = 1; 
+
+                while (current) {
+
+                    cout << fixed << setprecision(1); 
+
+                    cout << "Review# " << reviews++ << ": " << current->value << ": " << current->comment << endl; 
+
+                    current = current->next; 
                 }
             }
 
