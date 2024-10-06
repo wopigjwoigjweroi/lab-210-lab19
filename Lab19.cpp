@@ -6,6 +6,9 @@
 #include <iomanip> 
 using namespace std; 
 
+  double generateNum();
+ vector<string> commentReview(const string &filename);
+
 struct Node {
 
     float value; 
@@ -68,5 +71,54 @@ class Movie {
                 }
             }
 
-            
+            double average() {
+
+                int a = 0; 
+
+                double sum = 0.0; 
+
+                Node *current = head; 
+
+                while (current) {
+
+                    sum += current->value; 
+
+                    a++; 
+                }
+
+                    return (a > 0) ? (sum / a) : 0.0; 
+
+                   
+            }
+
+            string title() {
+
+                return title; 
+            }
 }; 
+
+
+  double generateNum() {
+
+        return (rand() % 41 + 10) / 10.0;
+
+    }
+
+   vector<string> commentReview(const string &filename) {
+
+        fstream file("Reviews.txt"); 
+
+        vector<string> comments; 
+
+        string l; 
+
+        if (file.is_open()) {
+
+            while (getline(file, l)) {
+                comments.push_back(l); 
+            }
+            file.close(); 
+        }
+
+        return comments; 
+    }
