@@ -108,7 +108,7 @@ class Movie {
 
    vector<string> commentReview(const string &filename) {
 
-        fstream file("Reviews.txt"); 
+        fstream file(filename); 
 
         vector<string> comments; 
 
