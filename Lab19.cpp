@@ -83,6 +83,8 @@ class Movie {
 
                     sum += current->value; 
 
+                    current = current->next; 
+                  
                     a++; 
                 }
 
@@ -91,7 +93,7 @@ class Movie {
                    
             }
 
-            string title() {
+            string titleName() {
 
                 return title; 
             }
@@ -122,3 +124,35 @@ class Movie {
 
         return comments; 
     }
+
+    int main() {
+
+       srand(static_cast<unsigned int>(time(0)));
+
+        vector<string> comments = commentReview("Reviews.txt"); 
+
+        vector<Movie> listOfMovies {
+
+            Movie("Interstellar"), Movie("Star Wars"), Movie("The Matrix"), Movie("Star Trek")
+        }; 
+
+         for (auto& movie : listOfMovies) {
+
+     for (int i = 0; i < 3; ++i) {
+         if (i < comments.size()) {
+             double rate = generateNum();
+             movie.review(rate, comments[i]);
+         }
+     }
+ }
+
+ for (const auto& movie : listOfMovies) {
+
+     movie.output();
+
+     cout << "Average Rating: " << fixed << setprecision(2) << movie.average() << endl;
+ }
+
+        return 0; 
+    }
+
